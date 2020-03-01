@@ -2,11 +2,8 @@ package ua.lviv.iot.ExtremeSportEquipment.model;
 
 public class WingSuit extends AbstractExtremeSportEquipment {
 
-	public WingSuit(double priceInUAH, SportType sportType) {
-		super(priceInUAH, sportType);
-		// TODO Auto-generated constructor stub
-	}
-
-
+    public WingSuit(double priceInUAH, SportType sportType) {
+        super(priceInUAH, sportType);
+    }
 
 }
