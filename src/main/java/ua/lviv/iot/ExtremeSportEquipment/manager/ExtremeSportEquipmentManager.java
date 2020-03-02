@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ua.lviv.iot.ExtremeSportEquipment.model.AbstractExtremeSportEquipment;
-
 import ua.lviv.iot.ExtremeSportEquipment.model.SportType;
 
 public class ExtremeSportEquipmentManager {

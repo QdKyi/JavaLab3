@@ -8,8 +8,7 @@ import ua.lviv.iot.ExtremeSportEquipment.model.SortType;
 
 public class ExtremeSportEquipmentManagerUtils {
 
-    protected static Comparator<AbstractExtremeSportEquipment> compareByProducerName 
-    = new Comparator<AbstractExtremeSportEquipment>() {
+    static Comparator<AbstractExtremeSportEquipment> compareByProducerName = new Comparator<AbstractExtremeSportEquipment>() {
         @Override
         public int compare(AbstractExtremeSportEquipment equipment1, AbstractExtremeSportEquipment equipment2) {
 
@@ -20,10 +19,9 @@ public class ExtremeSportEquipmentManagerUtils {
     public void sortEquipmentByWeight(final List<AbstractExtremeSportEquipment> equipmentList,
             final SortType sortType) {
         if (sortType == SortType.ASCENDING) {
-            equipmentList.sort(Comparator.comparing(AbstractExtremeSportEquipment::getWeight));
+            equipmentList.sort(new ExtremeSportEquipmentManagerUtils().new EquipmentSorterByWeight());
         } else if (sortType == SortType.DESCENDING) {
-            equipmentList.sort(Comparator.comparing(AbstractExtremeSportEquipment::getWeight).reversed());
-            equipmentList.sort(Comparator.comparing(AbstractExtremeSportEquipment::getWeight).reversed());
+            equipmentList.sort(new ExtremeSportEquipmentManagerUtils().new EquipmentSorterByWeight().reversed());
         }
     }
 
@@ -31,11 +29,12 @@ public class ExtremeSportEquipmentManagerUtils {
             final SortType sortType) {
         if (sortType == SortType.ASCENDING) {
 
-            equipmentList.sort(Comparator.comparing(AbstractExtremeSportEquipment::getPriceInUAH));
+            equipmentList.sort(EQUIP_BY_PRICE_SORTER);
+
         } else if (sortType == SortType.DESCENDING) {
 
-            equipmentList.sort(Comparator.comparing(AbstractExtremeSportEquipment::getPriceInUAH).reversed());
-            equipmentList.sort(Comparator.comparing(AbstractExtremeSportEquipment::getPriceInUAH).reversed());
+            equipmentList.sort(EQUIP_BY_PRICE_SORTER.reversed());
+
         }
     }
 
@@ -49,6 +48,8 @@ public class ExtremeSportEquipmentManagerUtils {
         }
 
     }
+
+    private static final EquipmentSorterByPrice EQUIP_BY_PRICE_SORTER = new EquipmentSorterByPrice();
 
     static class EquipmentSorterByPrice implements Comparator<AbstractExtremeSportEquipment> {
         @Override
@@ -64,14 +65,6 @@ public class ExtremeSportEquipmentManagerUtils {
                 final AbstractExtremeSportEquipment equipment2) {
             return equipment1.getWeight() - equipment2.getWeight();
         }
-    }
-
-    public Comparator<AbstractExtremeSportEquipment> getCompareByProducerName() {
-        return compareByProducerName;
-    }
-
-    public void setCompareByProducerName(Comparator<AbstractExtremeSportEquipment> compareByProducerName) {
-        ExtremeSportEquipmentManagerUtils.compareByProducerName = compareByProducerName;
     }
 
     public static void sortByYearOfProductionUsingLambda(final List<AbstractExtremeSportEquipment> equipmentList,
