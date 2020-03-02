@@ -1,13 +1,12 @@
 package ua.lviv.iot.ExtremeSportEquipment.manager;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import ua.lviv.iot.ExtremeSportEquipment.manager.ExtremeSportEquipmentManager;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import ua.lviv.iot.ExtremeSportEquipment.model.AbstractExtremeSportEquipment;
 import ua.lviv.iot.ExtremeSportEquipment.model.SportType;
 
