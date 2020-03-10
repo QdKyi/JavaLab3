@@ -23,6 +23,16 @@ public abstract class AbstractExtremeSportEquipment {
         this.yearOfProduction = yearOfProduction;
         this.producerName = producerName;
     }
+    
+    public String getHeaders() {
+        return "priceInUAH, weight, yearOfProduction, producerName, sportType";
+    }
+    
+    public String toCSV() {
+        return "Price = " + getPriceInUAH() + ", Weight = " + getWeight() + ", Sport type = "
+                + getSportType() + ", Year of Production = " + getYearOfProduction() 
+                + ", Producer name = " + getProducerName();
+    }
 
     public double getPriceInUAH() {
         return priceInUAH;
