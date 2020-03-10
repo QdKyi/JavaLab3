@@ -76,5 +76,5 @@ public class ExtremeSportEquipmentManagerUtils {
             equipmentList.sort((o1, o2) -> o2.getYearOfProduction() - o1.getYearOfProduction());
         }
     }
-
+    
 }
