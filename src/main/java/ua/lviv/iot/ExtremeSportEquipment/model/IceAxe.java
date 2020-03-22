@@ -9,14 +9,6 @@ public class IceAxe extends AbstractExtremeSportEquipment {
     public IceAxe(double priceInUAH, SportType sportType, int weight, int yearOfProduction, String producerName) {
         super(priceInUAH, sportType, weight, yearOfProduction, producerName);
     }
-    
-    public String getHeaders() {
-        return super.getHeaders();
-    }
-
-    public String toCSV() {
-        return super.toCSV();
-    }
 
     @Override
     public String toString() {
