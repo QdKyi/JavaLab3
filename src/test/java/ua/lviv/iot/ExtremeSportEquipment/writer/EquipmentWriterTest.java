@@ -15,7 +15,7 @@ import ua.lviv.iot.ExtremeSportEquipment.model.AbstractExtremeSportEquipment;
 public class EquipmentWriterTest extends BaseExtremeSportEquipmentManagerTest {
 
     @Test
-    public void testFile() throws IOException {
+    public void testWriteToFile() throws IOException {
         try (Writer fileWriter = new FileWriter("Equipment.csv")) {
             EquipmentWriter writer = new EquipmentWriter();
             writer.setWriter(fileWriter);
@@ -24,7 +24,7 @@ public class EquipmentWriterTest extends BaseExtremeSportEquipmentManagerTest {
     }
 
     @Test
-    public void testWriteToFile() throws IOException {
+    public void testStringWriteToFile() throws IOException {
         try (Writer csvWriter = new StringWriter()) {
             EquipmentWriter writer = new EquipmentWriter();
             writer.setWriter(csvWriter);

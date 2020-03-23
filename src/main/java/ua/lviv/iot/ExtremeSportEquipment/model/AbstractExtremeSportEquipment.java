@@ -7,6 +7,15 @@ public abstract class AbstractExtremeSportEquipment {
     private int weight;
     private int yearOfProduction;
     private String producerName;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public AbstractExtremeSportEquipment(double priceInUAH, SportType sportType) {
         super();

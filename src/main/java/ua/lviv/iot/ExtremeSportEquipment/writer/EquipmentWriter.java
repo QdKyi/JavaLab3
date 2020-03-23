@@ -1,7 +1,6 @@
 package ua.lviv.iot.ExtremeSportEquipment.writer;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
@@ -21,17 +20,6 @@ public class EquipmentWriter {
             writer.write(textToWrite);
         }
         writer.flush();
-    }
-    
-    public static void readFromFile(String file) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            
-            String readedString;
-            
-            while ((readedString = reader.readLine()) != null) {
-                System.out.println(readedString);
-            }
-        }
     }
     
     public void setWriter(Writer writer) {
