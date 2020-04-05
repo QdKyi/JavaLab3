@@ -1,5 +1,8 @@
 package ua.lviv.iot.ExtremeSportEquipment.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Kayak extends AbstractExtremeSportEquipment {
 
     Kayak() {

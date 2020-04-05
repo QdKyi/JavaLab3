@@ -1,5 +1,11 @@
 package ua.lviv.iot.ExtremeSportEquipment.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public abstract class AbstractExtremeSportEquipment {
 
     private double priceInUAH;
@@ -7,6 +13,8 @@ public abstract class AbstractExtremeSportEquipment {
     private int weight;
     private int yearOfProduction;
     private String producerName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     public Integer getId() {
