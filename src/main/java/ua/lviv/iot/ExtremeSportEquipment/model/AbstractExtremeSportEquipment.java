@@ -1,5 +1,6 @@
 package ua.lviv.iot.ExtremeSportEquipment.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 @Entity
 public abstract class AbstractExtremeSportEquipment {
 
+    @Column(name = "price_in_uah")
     private double priceInUAH;
     @Enumerated(EnumType.STRING)
     private SportType sportType;
