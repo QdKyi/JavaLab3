@@ -1,12 +1,25 @@
 package ua.lviv.iot.ExtremeSportEquipment.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public abstract class AbstractExtremeSportEquipment {
 
+    @Column(name = "price_in_uah")
     private double priceInUAH;
+    @Enumerated(EnumType.STRING)
     private SportType sportType;
     private int weight;
     private int yearOfProduction;
     private String producerName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     public Integer getId() {
@@ -32,15 +45,14 @@ public abstract class AbstractExtremeSportEquipment {
         this.yearOfProduction = yearOfProduction;
         this.producerName = producerName;
     }
-    
+
     public String getHeaders() {
         return "priceInUAH, weight, yearOfProduction, producerName, sportType";
     }
-    
+
     public String toCSV() {
-        return "Price = " + getPriceInUAH() + ", Weight = " + getWeight() + ", Sport type = "
-                + getSportType() + ", Year of Production = " + getYearOfProduction() 
-                + ", Producer name = " + getProducerName();
+        return "Price = " + getPriceInUAH() + ", Weight = " + getWeight() + ", Sport type = " + getSportType()
+                + ", Year of Production = " + getYearOfProduction() + ", Producer name = " + getProducerName();
     }
 
     public double getPriceInUAH() {

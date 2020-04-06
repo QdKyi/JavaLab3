@@ -1,12 +1,10 @@
 package ua.lviv.iot.ExtremeSportEquipment.controller;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,40 +16,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ua.lviv.iot.ExtremeSportEquipment.business.KayakService;
 import ua.lviv.iot.ExtremeSportEquipment.model.Kayak;
 
 @RequestMapping("/kayaks")
 @RestController
 public class KayakController {
-    private static Map<Integer, Kayak> kayaks = new HashMap<>();
     private static AtomicInteger counter = new AtomicInteger();
+    
+    @Autowired
+    private KayakService kayakService;
 
     @GetMapping
     public List<Kayak> getKayaks() {
-        return new LinkedList<Kayak>(kayaks.values());
+        return new LinkedList<Kayak>(kayakService.findKayaks());
     }
 
     @GetMapping(path = "/{id}")
     public Kayak getKayak(final @PathVariable("id") Integer id) {
-        return kayaks.get(id);
+        return kayakService.findKayak(id);
     }
 
     @PutMapping(path = "{id}")
-    public Kayak putKayak(final @PathVariable("id") Integer id, final @RequestBody Kayak kayak) {
-        kayak.setId(id);
-        return kayaks.put(id, kayak);
+    public ResponseEntity<Kayak> updateKayak(final @PathVariable("id") Integer id, final @RequestBody Kayak kayak) {
+        if (kayakService.checkForKayakExistence(id)) {
+            return ResponseEntity.ok(kayakService.updateKayak(id, kayak));
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping(path = "{id}")
     public ResponseEntity<Object> deleteKayak(final @PathVariable("id") Integer id) {
-        HttpStatus status = kayaks.remove(id) == null ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return ResponseEntity.status(status).build();
+        if(kayakService.checkForKayakExistence(id)) {
+            kayakService.deleteKayak(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
-    public Kayak createFlower(final @RequestBody Kayak kayak) {
+    public Kayak createKayak(final @RequestBody Kayak kayak) {
         kayak.setId(counter.incrementAndGet());
-        kayaks.put(kayak.getId(), kayak);
+        kayakService.createKayak(kayak);
         return kayak;
     }
 
