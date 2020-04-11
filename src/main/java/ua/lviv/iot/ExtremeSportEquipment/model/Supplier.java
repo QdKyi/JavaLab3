@@ -19,7 +19,7 @@ public class Supplier {
     private String supplierCountry;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)

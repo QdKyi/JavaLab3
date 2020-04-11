@@ -33,7 +33,7 @@ public abstract class AbstractExtremeSportEquipment {
     private String producerName;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToMany(mappedBy = "equipment")
     @JsonIgnoreProperties("equipment")
