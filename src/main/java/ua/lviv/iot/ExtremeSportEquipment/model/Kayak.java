@@ -6,8 +6,15 @@ import javax.persistence.Entity;
 public class Kayak extends AbstractExtremeSportEquipment {
 
     Kayak() {
-        this(0, null, 0, 0, null);
+        this(0, null, 0, 0, null, null);
     }
+
+    public Kayak(double priceInUAH, SportType sportType, int weight, int yearOfProduction, String producerName, 
+            Supplier supplier) {
+        super(priceInUAH, sportType, weight, yearOfProduction, producerName, supplier);
+    }
+    
+    
 
     public Kayak(double priceInUAH, SportType sportType, int weight, int yearOfProduction, String producerName) {
         super(priceInUAH, sportType, weight, yearOfProduction, producerName);

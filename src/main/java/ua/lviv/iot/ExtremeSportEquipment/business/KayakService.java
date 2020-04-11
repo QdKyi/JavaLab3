@@ -37,7 +37,8 @@ public class KayakService {
     public Kayak updateKayak(Integer id, Kayak kayak) {
         Kayak previousKayak = kayakRepository.findById(id).get();
         Kayak kayakToReturn = new Kayak(previousKayak.getPriceInUAH(), previousKayak.getSportType(), 
-                previousKayak.getWeight(), previousKayak.getYearOfProduction(), previousKayak.getProducerName());
+                previousKayak.getWeight(), previousKayak.getYearOfProduction(), previousKayak.getProducerName(),
+                previousKayak.getSupplier());
         kayakToReturn.setId(id);
         kayak.setId(id);
         kayakRepository.save(kayak);
