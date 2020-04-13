@@ -28,18 +28,18 @@ public class SupplierController {
 
     @GetMapping
     public List<Supplier> getSuppliers() {
-        return new LinkedList<Supplier>(supplierService.findAllSuppliers());
+        return new LinkedList<Supplier>(supplierService.getAll());
     }
 
     @GetMapping(path = "/{id}")
     public Supplier getSupplier(final @PathVariable("id") Integer id) {
-        return supplierService.findSupplier(id);
+        return supplierService.getById(id);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteSupplier(final @PathVariable("id") Integer id) {
         if (getSupplier(id) != null) {
-            supplierService.deleteSupplier(id);
+            supplierService.deleteById(id);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
@@ -53,7 +53,7 @@ public class SupplierController {
             Supplier SupplierToReturn = new Supplier(previousSupplier.getSupplierName(),
                     previousSupplier.getSupplierCountry());
             SupplierToReturn.setId(id);
-            supplierService.updateSupplier(id, supplier);
+            supplierService.update(supplier);
             return ResponseEntity.ok(SupplierToReturn);
         }
         return ResponseEntity.notFound().build();
@@ -62,7 +62,7 @@ public class SupplierController {
     @PostMapping
     public Supplier createSupplier(final @RequestBody Supplier supplier) {
         supplier.setId(counter.incrementAndGet());
-        supplierService.createSupplier(supplier);
+        supplierService.add(supplier);
         return supplier;
     }
 

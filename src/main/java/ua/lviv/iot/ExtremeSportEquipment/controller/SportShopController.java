@@ -28,18 +28,18 @@ public class SportShopController {
     
     @GetMapping
     public List<SportShop> getAllSportShops() {
-        return new LinkedList<SportShop>(sportShopService.findAllSportShops());
+        return new LinkedList<SportShop>(sportShopService.getAll());
     }
     
     @GetMapping(path = "/{id}")
     public SportShop getSportShop(final @PathVariable("id") Integer id) {
-        return sportShopService.findSportShop(id);
+        return sportShopService.getById(id);
     }
     
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> deleteSportShop(final @PathVariable("id") Integer id) {
         if(getSportShop(id) != null) {
-            sportShopService.deleteSportShop(id);
+            sportShopService.deleteById(id);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
@@ -53,7 +53,7 @@ public class SportShopController {
             SportShop sportShopToReturn = new SportShop(previousSportShop.getShopName(), 
                     previousSportShop.getLocationInTown());
             sportShopToReturn.setId(id);
-            sportShopService.updateSportShop(id, sportShop);
+            sportShopService.update(sportShop);
             return ResponseEntity.ok(sportShopToReturn);
         }
         return ResponseEntity.notFound().build();
@@ -62,7 +62,7 @@ public class SportShopController {
     @PostMapping
     public SportShop createSportShop(final @RequestBody SportShop sportShop) {
         sportShop.setId(counter.incrementAndGet());
-        sportShopService.createSportShop(sportShop);
+        sportShopService.add(sportShop);
         return sportShop;
     }
 
