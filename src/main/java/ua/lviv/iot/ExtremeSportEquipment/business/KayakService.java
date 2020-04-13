@@ -8,11 +8,11 @@ import ua.lviv.iot.ExtremeSportEquipment.dataAccess.KayakRepository;
 import ua.lviv.iot.ExtremeSportEquipment.model.Kayak;
 
 @Service
-public class KayakService extends AbstractService<Kayak>{
+public class KayakService extends AbstractService<Kayak> {
 
     @Autowired
     private KayakRepository kayakRepository;
-    
+
     @Override
     protected JpaRepository<Kayak, Integer> getRepository() {
         return kayakRepository;

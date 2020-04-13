@@ -21,20 +21,25 @@ public abstract class AbstractExtremeSportEquipment {
 
     @Column(name = "price_in_uah")
     private double priceInUAH;
+    
     @Enumerated(EnumType.STRING)
     private SportType sportType;
+    
     private int weight;
+    
     private int yearOfProduction;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "supplier_id")
     @JsonIgnoreProperties("equipment")
-    protected Supplier supplier;
+    private Supplier supplier;
 
     private String producerName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     @ManyToMany(mappedBy = "equipment")
     @JsonIgnoreProperties("equipment")
     private Set<SportShop> sportShops;

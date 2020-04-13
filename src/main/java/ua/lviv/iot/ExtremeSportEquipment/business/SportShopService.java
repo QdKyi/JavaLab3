@@ -8,7 +8,7 @@ import ua.lviv.iot.ExtremeSportEquipment.dataAccess.SportShopRepository;
 import ua.lviv.iot.ExtremeSportEquipment.model.SportShop;
 
 @Service
-public class SportShopService extends AbstractService<SportShop>{
+public class SportShopService extends AbstractService<SportShop> {
 
     @Autowired
     private SportShopRepository sportShopRepository;

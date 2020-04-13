@@ -47,8 +47,8 @@ public abstract class AbstractService<T> {
         }
         return previous;
     }
-    
-    public T add(T t){
+
+    public T add(T t) {
         return getRepository().save(t);
     }
 

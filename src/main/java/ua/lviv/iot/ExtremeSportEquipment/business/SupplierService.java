@@ -8,7 +8,7 @@ import ua.lviv.iot.ExtremeSportEquipment.dataAccess.SupplierRepository;
 import ua.lviv.iot.ExtremeSportEquipment.model.Supplier;
 
 @Service
-public class SupplierService extends AbstractService<Supplier>{
+public class SupplierService extends AbstractService<Supplier> {
 
     @Autowired
     private SupplierRepository supplierRepository;
