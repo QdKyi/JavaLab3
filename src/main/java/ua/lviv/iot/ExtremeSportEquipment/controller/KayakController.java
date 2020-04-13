@@ -29,18 +29,18 @@ public class KayakController {
 
     @GetMapping
     public List<Kayak> getKayaks() {
-        return new LinkedList<Kayak>(kayakService.findKayaks());
+        return new LinkedList<Kayak>(kayakService.getAll());
     }
 
     @GetMapping(path = "/{id}")
     public Kayak getKayak(final @PathVariable("id") Integer id) {
-        return kayakService.findKayak(id);
+        return kayakService.getById(id);
     }
 
     @PutMapping(path = "{id}")
     public ResponseEntity<Kayak> updateKayak(final @PathVariable("id") Integer id, final @RequestBody Kayak kayak) {
         if (kayakService.checkForKayakExistence(id)) {
-            return ResponseEntity.ok(kayakService.updateKayak(id, kayak));
+            return ResponseEntity.ok(kayakService.update(kayak));
         }
         return ResponseEntity.notFound().build();
     }
@@ -48,7 +48,7 @@ public class KayakController {
     @DeleteMapping(path = "{id}")
     public ResponseEntity<Object> deleteKayak(final @PathVariable("id") Integer id) {
         if(kayakService.checkForKayakExistence(id)) {
-            kayakService.deleteKayak(id);
+            kayakService.deleteById(id);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
@@ -57,7 +57,7 @@ public class KayakController {
     @PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
     public Kayak createKayak(final @RequestBody Kayak kayak) {
         kayak.setId(counter.incrementAndGet());
-        kayakService.createKayak(kayak);
+        kayakService.add(kayak);
         return kayak;
     }
 
