@@ -23,7 +23,7 @@ public abstract class AbstractService<T> {
     public T getById(int id) {
 
         if (getRepository().existsById(id)) {
-            System.out.println(getRepository().getOne(id));
+            System.out.println(getRepository().findById(id).get());
             T t = (T) getRepository().getOne(id);
             return t;
         }
@@ -39,10 +39,10 @@ public abstract class AbstractService<T> {
         return false;
     }
 
-    public T update(T t) {
+    public T update(int id,T t) {
         T previous = null;
-        if (getRepository().existsById(((AbstractExtremeSportEquipment) t).getId())) {
-            previous = getRepository().getOne(((AbstractExtremeSportEquipment) t).getId());
+        if (getRepository().existsById(id)) {
+            previous = getRepository().findById(id).get();
             getRepository().save(t);
         }
         return previous;

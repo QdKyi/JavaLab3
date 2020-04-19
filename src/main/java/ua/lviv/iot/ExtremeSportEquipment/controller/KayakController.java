@@ -40,7 +40,7 @@ public class KayakController {
     @PutMapping(path = "{id}")
     public ResponseEntity<Kayak> updateKayak(final @PathVariable("id") Integer id, final @RequestBody Kayak kayak) {
         if (kayakService.checkForKayakExistence(id)) {
-            return ResponseEntity.ok(kayakService.update(kayak));
+            return ResponseEntity.ok(kayakService.update(id,kayak));
         }
         return ResponseEntity.notFound().build();
     }
