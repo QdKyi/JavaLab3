@@ -53,7 +53,7 @@ public class SupplierController {
             Supplier SupplierToReturn = new Supplier(previousSupplier.getSupplierName(),
                     previousSupplier.getSupplierCountry());
             SupplierToReturn.setId(id);
-            supplierService.update(id,supplier);
+            supplierService.update(supplier);
             return ResponseEntity.ok(SupplierToReturn);
         }
         return ResponseEntity.notFound().build();

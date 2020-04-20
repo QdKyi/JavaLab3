@@ -39,13 +39,8 @@ public abstract class AbstractService<T> {
         return false;
     }
 
-    public T update(int id,T t) {
-        T previous = null;
-        if (getRepository().existsById(id)) {
-            previous = getRepository().findById(id).get();
-            getRepository().save(t);
-        }
-        return previous;
+    public void update(T t) {
+         getRepository().save(t);
     }
 
     public T add(T t) {
