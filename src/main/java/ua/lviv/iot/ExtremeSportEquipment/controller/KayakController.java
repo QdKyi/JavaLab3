@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ua.lviv.iot.ExtremeSportEquipment.business.KayakService;
 import ua.lviv.iot.ExtremeSportEquipment.model.Kayak;
+import ua.lviv.iot.ExtremeSportEquipment.model.SportShop;
 
 @RequestMapping("/kayaks")
 @RestController
@@ -39,8 +40,15 @@ public class KayakController {
 
     @PutMapping(path = "{id}")
     public ResponseEntity<Kayak> updateKayak(final @PathVariable("id") Integer id, final @RequestBody Kayak kayak) {
-        if (kayakService.checkForKayakExistence(id)) {
-            return ResponseEntity.ok(kayakService.update(id,kayak));
+        Kayak previousKayak = getKayak(id);
+        if (previousKayak != null) {
+            Kayak kayakToReturn = new Kayak(previousKayak.getPriceInUAH(), previousKayak.getSportType(), 
+                    previousKayak.getWeight(), previousKayak.getYearOfProduction(), 
+                    previousKayak.getProducerName());
+            kayakToReturn.setId(id);
+            kayak.setId(id);
+            kayakService.update(kayak);
+            return ResponseEntity.ok(kayakToReturn);
         }
         return ResponseEntity.notFound().build();
     }

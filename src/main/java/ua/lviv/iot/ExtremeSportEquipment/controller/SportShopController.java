@@ -53,7 +53,7 @@ public class SportShopController {
             SportShop sportShopToReturn = new SportShop(previousSportShop.getShopName(), 
                     previousSportShop.getLocationInTown());
             sportShopToReturn.setId(id);
-            sportShopService.update(id,sportShop);
+            sportShopService.update(sportShop);
             return ResponseEntity.ok(sportShopToReturn);
         }
         return ResponseEntity.notFound().build();
